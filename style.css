@@ -15,6 +15,7 @@
     width: 1200px;
     height: 75px;
     margin: auto;
+    background-color: rgb(143, 199, 186);
 }
 
 .icon{
@@ -90,7 +91,7 @@ ul li a:hover{
     width: 100px;
     height: 40px;
     background: aquamarine;
-    border: 2px solid aquamarine;
+    border: 3px solid aquamarine;
     margin-top: 13px;
     color: black;
     font-size: 15px;
@@ -156,6 +157,10 @@ ul li a:hover{
 .content span{
     color: aquamarine;
     font-size: 60px;
+}
+
+section{
+    float: right;
 }
 
 .form{
@@ -278,10 +283,11 @@ td{
 
 .footer{
     position: fixed;
-    left: 0;
+    left: 155px;
     bottom: 0;
-    width: 100%;
-    background-color: aqua;
+    width: 1200px;
+    height: 35px;
+    background-color: rgb(143, 199, 186);
     color: black;
     text-align: center;
 }
