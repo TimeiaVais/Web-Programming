@@ -68,7 +68,7 @@ class Car_userCollectionWithDOM extends Car_userCollection {
                 ${rows}
             </table>
             <div class="add">
-                <button type="button" onclick="ShowAddCars()">
+                <button type="button" onclick="ShowAddCar_user()">
                    Add cars
                 </button>
             </div>
@@ -82,12 +82,12 @@ class Car_userCollectionWithDOM extends Car_userCollection {
                     <h3> Add Cars </h3>
                     <input name="id" type="hidden">
                     <input name="code" placeholder="code"> 
-                    <input name="fullname" placeholder="pib">
-                    <input name="brand" placeholder="sex">
-                    <input name="number" placeholder="age"> 
-                    <input name="color" placeholder="country">
+                    <input name="fullname" placeholder="fullname">
+                    <input name="brand" placeholder="brand">
+                    <input name="number" placeholder="number"> 
+                    <input name="color" placeholder="color">
                     
-                    <button type="button" onclick="AddNewCars()">
+                    <button type="button" onclick="AddNewCar_user()">
                         Save
                     </button>
                 </form>
@@ -98,15 +98,15 @@ class Car_userCollectionWithDOM extends Car_userCollection {
         return ` 
             <div id="edit">
                 <form name="editForm" method="post" action="#">
-                    <h3> Edit Player </h3>
+                    <h3> Edit Car_user </h3>
                     <input name="id" type="hidden">
                     <input name="code" placeholder="code"> 
-                    <input name="fullname" placeholder="pib">
-                    <input name="brand" placeholder="sex">
-                    <input name="number" placeholder="age"> 
-                    <input name="color" placeholder="country">
+                    <input name="fullname" placeholder="fullname">
+                    <input name="brand" placeholder="brand">
+                    <input name="number" placeholder="number"> 
+                    <input name="color" placeholder="color">
                    
-                    <button type="button" onclick="EditCars()">
+                    <button type="button" onclick="EditCar_user()">
                         Save
                     </button>
                 </form>
@@ -114,7 +114,7 @@ class Car_userCollectionWithDOM extends Car_userCollection {
         `;
     }
     toHTML() {
-        return this.carsTableToHTML() + this.addFormToHTML() + this.editFormToHTML();
+        return this.car_userTableToHTML() + this.addFormToHTML() + this.editFormToHTML();
     }
 
     mount(parrent) {
@@ -128,13 +128,13 @@ class Car_userCollectionWithDOM extends Car_userCollection {
     }
 
     addEventListners() {
-        document.addEventListener("deleteCars", event => {
+        document.addEventListener("deleteCar_user", event => {
             super.delete(event.detail.id);
             this.render();
         });
-        document.addEventListener("addPlayer", event => {
+        document.addEventListener("addCar_user", event => {
             super.add(
-                new PlayerWithId(
+                new Car_userWithId(
                     event.detail.code,
                     event.detail.fullname,
                     event.detail.brand,
@@ -145,7 +145,7 @@ class Car_userCollectionWithDOM extends Car_userCollection {
             this.render();
         });
 
-        document.addEventListener("editCars", event => {
+        document.addEventListener("editCar_user", event => {
             try {
                 super.update(event.detail.id, event.detail);
                 this.render();
@@ -156,19 +156,19 @@ class Car_userCollectionWithDOM extends Car_userCollection {
         });
     }
 }
-function DeleteCars(id) {
-    let deletePlayerEvent = new CustomEvent("deleteCars", { detail: { id } });
+function DeleteCar_user(id) {
+    let deleteCar_userEvent = new CustomEvent("deleteCar_user", { detail: { id } });
     document.dispatchEvent(deleteCarsEvent);
 }
 
-function AddNewPlayer() {
+function AddNewCar_user() {
     const code = document.getElementsByName("code")[0].value;
-    const pib = document.getElementsByName("fullname")[0].value;
-    const sex = document.getElementsByName("brand")[0].value;
-    const age = document.getElementsByName("number")[0].value;
-    const country = document.getElementsByName("color")[0].value;
+    const fullname = document.getElementsByName("fullname")[0].value;
+    const brand = document.getElementsByName("brand")[0].value;
+    const number = document.getElementsByName("number")[0].value;
+    const color = document.getElementsByName("color")[0].value;
     
-    let addCarsEvent = new CustomEvent("addCars", {
+    let addCar_userEvent = new CustomEvent("addCar_user", {
         detail: {
             code, 
             fullname,
@@ -177,32 +177,32 @@ function AddNewPlayer() {
             color
         }
     });
-    document.dispatchEvent(addCarsEvent);
+    document.dispatchEvent(addCar_userEvent);
 }
-function StartEditCars(id) {
+function StartEditCar_user(id) {
     document.getElementById("edit").style.display = "block";
     try {
-        let player =player1.getById(id);
+        let car_user = car_user.getById(id);
         document.getElementsByName("id")[1].value = player.id;
         document.getElementsByName("code")[1].value = player.code;
-        document.getElementsByName("fullname")[1].value = player.pib;
-        document.getElementsByName("brand")[1].value = player.sex;
-        document.getElementsByName("number")[1].value = player.age;
-        document.getElementsByName("color")[1].value = player.country;
+        document.getElementsByName("fullname")[1].value = player.fullname;
+        document.getElementsByName("brand")[1].value = player.brand;
+        document.getElementsByName("number")[1].value = player.number;
+        document.getElementsByName("color")[1].value = player.color;
     } catch (error) {
         console.log(error);
         alert(error);
     }
 }
-function EditCars() {
+function EditCar_user() {
     const id = parseInt(document.getElementsByName("id")[1].value);
     const code = document.getElementsByName("code")[1].value;
-    const pib = document.getElementsByName("fullname")[1].value;
-    const sex = document.getElementsByName("brand")[1].value;
-    const age = document.getElementsByName("number")[1].value;
-    const country = document.getElementsByName("color")[1].value;
+    const fullname = document.getElementsByName("fullname")[1].value;
+    const brand = document.getElementsByName("brand")[1].value;
+    const number = document.getElementsByName("number")[1].value;
+    const color = document.getElementsByName("color")[1].value;
    
-    let editCarsEvent = new CustomEvent("editCars", {
+    let editCar_userEvent = new CustomEvent("editCar_user", {
         detail: {
             id,
             code, 
@@ -212,9 +212,9 @@ function EditCars() {
             color
         }
     });
-    document.dispatchEvent(editCarsEvent);
+    document.dispatchEvent(editCar_userEvent);
 }
 
-function ShowAddCars() {
+function ShowAddCar_user() {
     document.getElementById("add").style.display = "block";
 }
