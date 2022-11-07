@@ -1,37 +1,57 @@
-class Car_userCollection {
+class UserCollection {
     constructor() {
       this.items = [];
     }
+
     get count() {
-        return this.items.length;
+      return this.items.length;
     }
-    add(car_user) {
-        if (!(car_user instanceof Car_user))
-          throw `${car_user} is not instance of Car_user`;
-        this.items.push(car_user);
+   
+    add(user) {
+      if (!(user instanceof User))
+        throw `${user} is not instance of User`;
+      this.items.push(user);
     }
-    create(car_userData) {
-        let newcar_user = new Car_user(car_userData.code, car_userData.fullname, car_userData.brand, car_userData.number, car_userData.color);
-        this.items.push(newCar_user);
+  
+    
+    create(userData) {
+      let newUser = new User(userData.username, userData.password, userData.image);
+      this.items.push(newUser);
     }
+  
     getById(id) {
-        return this.items.find(car_user => car_user.id == id);
+      return this.items.find(user => user.id == id);
     }
+    
+    getByUsername(fullname) {
+      return this.items.find(user => user.fullname.toLowerCase() == fullname.toLowerCase());
+    }
+    
+    getShortUsernames(len) {
+      return this.items.filter(user => user.fullname.length <= len);
+    }
+  
+    getByUsernameStart(searchString) {
+      return this.items.filter(user => user.fullname.toLowerCase().startsWith(searchString.toLowerCase()));
+    }
+
     getAll() {
-        return [...this.items];
+      return [...this.items];
     }
-    update(id, updatedCar_user) {
-        let car_user = this.getById(id);
-        if (!car_user)
-          throw `Not found user with id ${id}`;
-        for (let key of car_user.settablePropertiesList)
-        if (updatedCar_user[key])
-        user[key] = updatedCar_user[key];
+
+    update(id, updatedUser) {
+      let user = this.getById(id);
+      if (!user)
+        throw `Not found user with id ${id}`;
+      for (let key of user.settablePropertiesList)
+        if (updatedUser[key])
+          user[key] = updatedUser[key];
     }
+    
     delete(id) {
-        let car_userIndex = this.items.findIndex(car_user => car_user.id == id);
-        if (car_userIndex == -1)
-          throw `Not found car_user with id ${id}`;
-        this.items.splice(car_userIndex, 1);
+      let userIndex = this.items.findIndex(user => user.id == id);
+      if (userIndex == -1)
+        throw `Not found user with id ${id}`;
+      this.items.splice(userIndex, 1);
     }
-}
+  }
