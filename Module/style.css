@@ -1,0 +1,39 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.content{
+    width: 1200px;
+    height: auto;
+    margin: auto;
+    color: black;
+    position: relative;
+    background-color: mintcream;
+}
+
+.content h1{
+    font-family: 'Times New Roman';
+    font-size: 50px;
+    padding-left: 20px;
+    margin-top: 9%;
+    letter-spacing: 2px;
+}
+
+.content btnn{
+    width: 240px;
+    height: 40px;
+    background: aquamarine;
+    border: none;
+    margin-top: 30px;
+    font-size: 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    color: black;
+    transition: 0.4s ease;
+}
+
+.content btnn:hover{
+    background: black;
+    color: aquamarine;
+}
