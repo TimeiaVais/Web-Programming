@@ -9,29 +9,32 @@
 </head>
 <body>
     <div class="content">
-        <h1>Photo 1</h1>
-        <p>
-            <img src = "https://cdn.mos.cms.futurecdn.net/H8R79odorHBXmDLQw9kzUk.jpg"  width="500" height="300"
-            alt="Horses:Domestic, feral and wild">
-            <time>2022-11-10</time>
-        </p>
+        <div class="sign">
+            <p>
+                <img src = "https://cdn.mos.cms.futurecdn.net/H8R79odorHBXmDLQw9kzUk.jpg"  width="500" height="300"
+                alt="Horses:Domestic, feral and wild">
+                <time>2022-11-10</time>
+                <figcaption><b>Horses</b></figcaption>
+            </p>
+        </div>
 
-        <h1>Photo 2</h1>
-        <p>
-            <img src = "https://static01.nyt.com/images/2021/10/26/science/20tb-horses/20tb-horses-articleLarge.jpg?quality=75&auto=webp&disable=upscale"  width="500" height="300"
-            alt="World's modern horses">
-            <time>2022-11-10</time>
-        </p>
+        <div class="author">
+            <p>
+                <b><u>Author: Timeia Vais</u></b>
+            </p>
+        </div>
 
-        <h1>Photo 3</h1>
-        <p>
-            <img src = "https://nationaltoday.com/wp-content/uploads/2021/07/National-I-Love-Horses-Day.jpg"  width="500" height="500"
-            alt="Love horses day">
-            <time>2022-11-10</time>
-        </p>
+        <div class="hashtag">
+            <ul>
+                <li><a id="hashtag" href="#">AUTHOR</a></li>
+                <li><a id="hashtag" href="#">PHOTO</a></li>
+                <li><a id="hashtag" href="#">TIME</a></li>
+            </ul>
+        </div>
+
 
         <button type="add"> Add </button>
-        <button type="delete"> Delelete </button>
+        <button onclick="del()"> Delelete </button>
 
         <div id="root"></div>
 
@@ -40,6 +43,6 @@
         </form>
     </div>
 
-    <script src="module_crud.js"></script>
+    <script src="module_function.js"></script>
 </body>
 </html>
