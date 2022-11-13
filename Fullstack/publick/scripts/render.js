@@ -37,7 +37,8 @@ class UserCollectionWithDOM extends UserCollection {
 
     async getUsers() {
         if (this.searchString)
-            return this.getByUsernameStart(this.searchString); 
+            return this.getByUsernameStart(this.searchString);
+
         return await this.getAll();
     }
 
@@ -80,8 +81,7 @@ class UserCollectionWithDOM extends UserCollection {
                 ${rows}
             </table>
         `;
-    }
-   
+    } 
     get addFormHtml() {
         return `
             <button type="button" onclick="ShowAddUserForm()">
@@ -126,7 +126,7 @@ class UserCollectionWithDOM extends UserCollection {
         return `<input type="text" 
             name="searchByName" 
             id="searchByName"
-            placeholder="Enter fullmane for search"
+            placeholder="Enter fullname for search"
             value="${this.searchString}"
             onchange="Search()"
         >`;
@@ -142,20 +142,17 @@ class UserCollectionWithDOM extends UserCollection {
 
     async render() {
         const tableTemplate = await this.getUsersToTableHtml();
-        this._parrent.innerHTML = this.searchInputHtml + this.usersToTableHtml + this.addFormHtml + this.editFormHtml;
+        this._parrent.innerHTML = this.searchInputHtml + tableTemplate + this.addFormHtml + this.editFormHtml;
     }
-    
     addEventListners() {
         document.addEventListener("deleteUser", async event => {
             await super.delete(event.detail.id);
             this.render();
         });
-
         document.addEventListener("addUser", async event => {
             await super.create(event.detail);
             this.render();
         });
-       
         document.addEventListener("editUser", async event => {
             await super.update(event.detail.id, event.detail);
             this.render();
@@ -176,10 +173,9 @@ class UserCollectionWithDOM extends UserCollection {
         window.ShowAddUserForm = () => {
             document.getElementById("add-user").style.display = "block";
         }
-
         window.AddNewUser = () => {
-            const code = document.getElementsByName("code")[0].value;
-            const fullname = document.getElementsByName("fullname")[0].value;
+            const code= document.getElementsByName("code")[0].value;
+            const fullname= document.getElementsByName("fullname")[0].value;
             const brand = document.getElementsByName("brand")[0].value;
             const number = document.getElementsByName("number")[0].value;
             const color = document.getElementsByName("color")[0].value;
@@ -198,7 +194,7 @@ class UserCollectionWithDOM extends UserCollection {
         window.StartEditUser = (id) => {
             document.getElementById("edit-user").style.display = "block";
 
-            let user = super.getById(id); 
+            let user = super.getById(id); // знаходимо користувача із вказаним id 
             document.getElementsByName("id")[1].value = user.id;
             document.getElementsByName("code")[1].value = user.code;
             document.getElementsByName("fullname")[1].value = user.fullname;
@@ -226,14 +222,13 @@ class UserCollectionWithDOM extends UserCollection {
             });
             document.dispatchEvent(editUserEvent);
         }
-       
+
         window.Search = () => {
             const searchString = document.getElementById("searchByName").value;
             let searchEvent = new CustomEvent("searchUser", { detail: { searchString } });
             document.dispatchEvent(searchEvent);
         }
     }
-    
     addErrorMessage() {
         window.onerror = (error) => {
             alert(error);
